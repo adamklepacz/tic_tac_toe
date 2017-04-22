@@ -1,214 +1,53 @@
 <!DOCTYPE html>
-   <html lang="pl">
-   <head>
-       <title>Tic Tac Toe</title>
-	   <meta charset="utf-8">
-   </head>
-   <body style="background-color: lightgrey;">
-	 <style>
-		 html {
-			height: 100%;
-			width: 100%;
-		 } 
-		 .wrapper {
-			border: 2px solid black; 
-			height: 320px;
-			width: 320px;
-			box-sizing: border-box;
-			margin-left: auto;
-			margin-right: auto;
-		 }
-		 
-		 .grid {
-			 width: 100px;
-			 height: 100px;
-			 float: left;
-			 box-sizing: border-box;
-			 border: 1px solid grey;
-			 margin: auto;
-		 }
-	  </style>
-     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-	  <!-- <script src="compare.js"></script> -->
-	 <!-- KOD GRY -->
-     <script>
-		 
-
-
-		 // Wining array's
-		 
-var array_winn = [
-				[
-				 1,1,1,
-				 0,0,0,
-				 0,0,0,
-			   	],
-				[
-				 0,0,0,
-				 1,1,1,
-				 0,0,0,
-			   	],
-				[
-				 0,0,0,
-				 0,0,0,
-				 1,1,1,
-				],
-				[
-				 1,0,0,
-				 1,0,0,
-				 1,0,0,
-				],
-				[
-				 0,1,0,
-				 0,1,0,
-				 0,1,0,
-			   	],
-				[
-				 0,0,1,
-				 0,0,1,
-				 0,0,1,
-			   	],
-				[
-				 1,0,0,
-				 0,1,0,
-				 0,0,1,
-			    ],
-				[
-				 0,0,1,
-				 0,1,0,
-				 1,0,0,
-			    ]
-];
-
-
-		 
-$(document).ready(function(){
-	
-// Main array
-var array_main =  [ , , ,
-				    , , ,
-				    , , ,
-				  ];
-var el_id_val;
-
-// Funkcja sprawdzajaca czy doszło do wygranej
-var check_if_win = function () {
-	// sprawdzenie wygranej w przypadku trzech rzędow
-	if		  ((array_main[0] == 1) && (array_main[1] == 1) && (array_main[2] == 1)) {
-		console.log('Wygrana');
-	} else if ((array_main[3] == 1) && (array_main[4] == 1) && (array_main[5] == 1)) {
-		console.log('Wygrana');
-	} else if ((array_main[6] == 1) && (array_main[7] == 1) && (array_main[8] == 1)) {
-		console.log('Wygrana');
-	} 
-	//sprawdzenie wygranej w przypadku trzech kolumn
-	  else if ((array_main[0] == 1) && (array_main[3] == 1) && (array_main[6] == 1)) {
-		console.log('Wygrana');
-	} else if ((array_main[1] == 1) && (array_main[4] == 1) && (array_main[7] == 1)) {
-		console.log('Wygrana');
-	} else if ((array_main[2] == 1) && (array_main[5] == 1) && (array_main[8] == 1)) {
-		console.log('Wygrana');
-	}
-	//sprawdzenie wygranej w przypadku przekatnych
-	  else if ((array_main[0] == 1) && (array_main[4] == 1) && (array_main[8] == 1)) {
-		console.log('Wygrana');
-	} else if ((array_main[2] == 1) && (array_main[4] == 1) && (array_main[6] == 1)) {
-		console.log('Wygrana');
-	} else {
-		console.log('Gra sie toczy dalej ');
-	}
-};
-		 
-
-	
-// Funkcja przypisujaca wartosc do zmiennej el_id_val 
-
-var el_id_val_assignment = function () {
-	$('.grid').click(function() {
-			el_id_val = parseInt($(this).attr('id')) - 1;
-			console.log('Zmienna el_id_val wynosi ' + el_id_val);
-			check_if_free();
-	});
-	// end of click function	
-};
-// end of el_id_val_assignment function
-	
-	
-	
-// Funkcja przypisujaca liczbe jeden do kliknietego miejsca w tablicy
-var assign_one = function() {
-		array_main[el_id_val] = 1;
-			// przypisanie do kliknietego id, czyli indexu tablicy liczby 1
-			//console.log('Kliknieto element nr ' + el_id_val + ' i przypisano do niego jedynke');
-			assign_zero();
-	};
-	// end of assign_one function
-
-// Funkcja przypisujaca losowe zero po przypisaniu jedynki w klikienty index tablicy
-var assign_zero = function () {
-		var random_index = Math.floor(Math.random() * 9) ;
-		// Przypsianie do zmiennej, losowego indexu tablicy
-		if(array_main[random_index] === undefined) {
-			array_main[random_index] = 0;
-			//console.log('Losowo przypisano zero do elementu ' + random_index);
-			console.log(array_main);
-		} else {
-			assign_zero();
-		}
-	 check_if_win();
-	return false;
-};
-	
-	
-// Funkcja sprawdzajaca czy pole nie jest już zajęte
-var check_if_free = function () {
-		if(array_main[el_id_val] === undefined) {
-			//console.log('Pole wolne, przypisz jedynke');
-			assign_one();
-		} else if(array_main[el_id_val] !== undefined) {
-			console.log('Ruch niedozwolony');
-			alert('Ruch niedozwolony');
-			return false;
-		};
-
-};
-// koniec funkcji check_if_free 
-
-
-	el_id_val_assignment();
-});
-// end of ready function
-
-		 
-		 
-
-
-
-
-
-
-      </script>
-	   
-	   <div class="wrapper">
-		   <div id="1" class="grid">
+<html lang="pl">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Tic-Tac-Toe build by Adam Klepacz</title>
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/custom.css">
+	<link rel="stylesheet" href="font/css/fontello.css">
+ 	<!-- [if lt IE9]> 
+	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+</head>
+<body>
+	<div class="row row_grey">
+	   <h2>Tic-Tac-Toe</h2>
+	   <p>You start with a cross!</p>
+	</div>
+   	<div class="container">   
+	   <div class="col-md-12">
+		   <div class="row">
+				<div class="grid_wrapper">
+				   <div id="1" class="grid">
+				   </div>
+					<div id="2" class="grid">
+				   </div>
+					<div id="3" class="grid">
+				   </div>
+					<div id="4" class="grid">
+				   </div>
+					<div id="5" class="grid">
+				   </div>
+					<div id="6" class="grid">
+				   </div>
+					<div id="7" class="grid">
+				   </div>
+					<div id="8" class="grid">
+				   </div>
+					<div id="9" class="grid">
+				   </div>
+				</div>
+			   <button>New game</button>	   
 		   </div>
-		    <div id="2" class="grid">
-		   </div>
-		    <div id="3" class="grid">
-		   </div>
-		    <div id="4" class="grid">
-		   </div>
-		    <div id="5" class="grid">
-		   </div>
-		    <div id="6" class="grid">
-		   </div>
-		    <div id="7" class="grid">
-		   </div>
-		    <div id="8" class="grid">
-		   </div>
-		    <div id="9" class="grid">
-		   </div>
-		   
 	   </div>
-   </body>
-   </html>
+   	</div>
+
+   <!-- Scripts below -->
+   <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+   <script src="js/game.js"></script>
+</body>
+</html>
