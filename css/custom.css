@@ -28,6 +28,7 @@ body {
 
 .row_grey {
 	width: 100%;
+	height: 150px;
 	margin: 0;
 	text-align: center;
 	background-color: lightgrey;
